@@ -29,6 +29,8 @@ RUN version=$(curl -s -L --connect-timeout 5 --max-time 10 --retry 2 --retry-del
 
 RUN chmod 777 -R /opt/app
 
+EXPOSE 3001
+
 CMD mkdir -p /opt/app/data; cd /opt/app/data; \
   META_FOLDER=/opt/app/http-meta HOST=:: node /opt/app/http-meta.bundle.js > /opt/app/data/http-meta.log 2>&1 & echo "HTTP-META is running..."; \
   SUB_STORE_BACKEND_API_HOST=:: SUB_STORE_FRONTEND_HOST=:: SUB_STORE_FRONTEND_PORT=3001 SUB_STORE_FRONTEND_PATH=/opt/app/frontend SUB_STORE_DATA_BASE_PATH=/opt/app/data node /opt/app/sub-store.bundle.js
